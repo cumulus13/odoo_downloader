@@ -90,14 +90,14 @@ requirements = [
 
 entry_points = {
     "console_scripts": [
-        "odoo_download = odoo_download.odoo_download:usage",
+        "odoo_download = odoo_download.Odoo_download:usage",
         ]
     }
 
 if sys.version_info.major == 3:
     entry_points = {
     "console_scripts": [
-        "odoo_download3 = odoo_download.odoo_download:usage",
+        "odoo_download3 = odoo_download.Odoo_download:usage",
         ]
     }
 
