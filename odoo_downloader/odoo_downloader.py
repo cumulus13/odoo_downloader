@@ -48,6 +48,9 @@ class Odoo_downloader(object):
 
 	@classmethod
 	def get(self, system = None, version = None, dtype = 'community'):
+		data_version = None
+		data_system = None
+		data_dtype = None
 		platforms = {}
 		if version: version = str(version)
 		if system:
@@ -120,9 +123,6 @@ class Odoo_downloader(object):
 			elif q in ["exit", 'x', 'q', 'quit']:
 				sys.exit(make_colors("system exit !",'lw', 'r'))
 		else:
-			data_version = None
-			data_system = None
-			data_dtype = None
 			data_version = list(filter(lambda k: str(version).lower() in k.lower() or k.lower() in str(version).lower(), [p for p in platforms]))
 			debug(data_version = data_version)
 			#pause()
@@ -189,10 +189,13 @@ class Odoo_downloader(object):
 				for p in platforms.get(max(platforms.keys())).keys():
 					for k in system:
 						if k.lower() in p.lower() or p.lower() in k.lower():
-							data_system = p
+							data_system = [p]
 							break
 					if data_system:
 						break
+			# if os.getenv('DEBUG') or os.getenv('DEBUG_SERVER'):
+			# 	print("data_system      :", data_system)
+			# 	print("type(data_system):", type(data_system))
 			debug(data_system = data_system)
 			version = platforms.get(max(platforms.keys())).get(data_system[0]).get('community')
 			debug(version = version)
@@ -234,10 +237,14 @@ class Odoo_downloader(object):
 	@classmethod
 	def download(self, download_path = None, system = None, version = None, dtype = 'community', saveas = None, downloader = 'wget', nodownload = False):
 		download_path = download_path or os.getcwd()
+		if isinstance(system, list):
+			system = system[0]
 		debug(system = system)
 		debug(version = version)
 		debug(dtype = dtype)
 		url_download, system, version, dtype = self.get(system, version, dtype)
+		if isinstance(system, list):
+			system = system[0]
 		debug(system = system)
 		debug(version = version)
 		debug(dtype = dtype)

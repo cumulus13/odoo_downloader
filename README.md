@@ -63,5 +63,5 @@ $ odoo_downloader -o ubuntu -v 14 -t enterprise -p /home/cumulus13/Download -d a
 
 Donate
 ----------
-[Paypal]("paypal.me/licface13")
+[Paypal](https://www.paypal.me/licface13)
 
