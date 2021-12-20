@@ -84,6 +84,7 @@ requirements = [
         'bitmath',
         'clipboard',
         'unidecode',
+        'lxml',
         'pywget',
     ]
 
